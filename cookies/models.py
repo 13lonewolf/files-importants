@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Cookie(models.Model):
-    name = models.CharField("Nome", max_length=100, blank=True, null=True)
+    name = models.CharField("Nome", max_length=100, blank=True, null=True, default="sem nome")
     archive = models.CharField("Arquivo", max_length=500)
 
     def __str__(self):

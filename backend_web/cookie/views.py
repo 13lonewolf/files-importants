@@ -1,4 +1,6 @@
 from django.http import JsonResponse
+from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny
 
 from cookies.models import Cookie
 from rest_framework import viewsets
@@ -9,8 +11,8 @@ class CookieViewSet(viewsets.GenericViewSet):
     queryset = Cookie.objects.all()
     serializer_class = CookieSerializer
 
-    @staticmethod
-    def create(request):
+    @action(methods=["POST"], detail=False, permission_classes=[AllowAny])
+    def add_cookie(self, request):
         data = request.data
 
         name = data['name']
